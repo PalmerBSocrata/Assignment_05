@@ -75,11 +75,24 @@ while True:
     elif strChoice == 'd':
         # Deleting an entry
         deletion_id = input('What is the ID of the CD you would like to delete? ')
-        mergedList = lstTbl + lstTblFromFile
-        for row in mergedList:
-            if int(deletion_id) == row['cd_id']:
+        for row in lstTblFromFile:
+            if int(deletion_id) == int(row['cd_id']):
+                lstTblFromFile.remove(row)
+                print()
+                print('Deleted ID #{} from in-memory data\n'.format(row['cd_id']))
+                print('Please "Save Inventory to File" to delete this from the file')
+                print()
+            else:
+                print('ID #{} not found'.format(row['cd_id']))
+        for row in lstTbl:
+            if int(deletion_id) == int(row['cd_id']):
                 lstTbl.remove(row)
-                print('Deleted ID #{}'.format(row['cd_id']))
+                print()
+                print('Deleted ID #{} from in-memory data\n'.format(row['cd_id']))
+                print('Please "Save Inventory to File" to delete this from the file')
+                print()
+            else:
+                print('ID #{} not found'.format(row['cd_id']))
     elif strChoice == 's':
         # 4. Save the data to a text file CDInventory.txt if the user chooses so
         # Merge the user-entered data with the data loaded from the file
